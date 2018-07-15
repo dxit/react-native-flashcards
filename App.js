@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Container, Header, Content, Spinner } from 'native-base';
+import { View } from 'react-native';
+import { Header, Spinner } from 'native-base';
 import { Font, } from 'expo';
 import StatusBarHeader from './components/StatusBarHeader';
 import { stormcloud } from './utils/colors';
@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import { fetchInitialData } from './utils/api';
 import { setInitialData } from './actions/decks';
+import Navigation from './components/Navigation';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -19,11 +20,11 @@ export default class App extends React.Component {
 		fontLoaded: false
 	};
 
-	componentDidMount() {
+	async componentDidMount() {
 		fetchInitialData()
 			.then((data) => store.dispatch(setInitialData(data)));
 
-		Font.loadAsync({
+		await Font.loadAsync({
 			Roboto: require('native-base/Fonts/Roboto.ttf'),
 			Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
 		});
@@ -34,24 +35,19 @@ export default class App extends React.Component {
 	render() {
 		if (!this.state.fontLoaded) {
 			return (
-				<Container>
+				<View>
 					<StatusBarHeader/>
 					<Header/>
-					<Content>
-						<Spinner color={stormcloud}/>
-					</Content>
-				</Container>
+					<Spinner color={stormcloud}/>
+				</View>
 			)
 		}
 		return (
 			<Provider store={store}>
-				<Container>
+				<View style={{flex: 1}}>
 					<StatusBarHeader/>
-					<Header/>
-					<Content>
-						<Text>Flashcards</Text>
-					</Content>
-				</Container>
+					<Navigation/>
+				</View>
 			</Provider>
 		);
 	}

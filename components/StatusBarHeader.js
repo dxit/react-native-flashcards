@@ -5,7 +5,7 @@ import { weldonBlue } from '../utils/colors';
 
 const StatusBarHeader = () =>
 	<View style={{height: Constants.statusBarHeight}}>
-		<StatusBar translucent backgroundColor={weldonBlue} barStyle="light-content"/>
+		<StatusBar />
 	</View>;
 
 export default StatusBarHeader;
