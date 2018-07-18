@@ -1,10 +1,21 @@
-import React  from 'react';
-import { Text } from 'react-native'
+import React from 'react';
+import { Container, Header, Content, Body, Title } from 'native-base';
+import { withNavigation } from 'react-navigation'
+import CardForm from './CardForm';
 
-const AddCard = () => {
-	return(
-		<Text>Add Card</Text>
+const AddCard = ({navigation}) => {
+	return (
+		<Container>
+			<Header>
+				<Title>Add Card</Title>
+			</Header>
+			<Content>
+				<Body>
+					<CardForm navigation={navigation}/>
+				</Body>
+			</Content>
+		</Container>
 	)
 };
 
-export default AddCard;
+export default withNavigation(AddCard);

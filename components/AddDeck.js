@@ -1,9 +1,19 @@
 import React  from 'react';
-import { Text } from 'react-native'
+import { Container, Header, Content, Body, Title } from 'native-base'
+import { withNavigation } from 'react-navigation';
 
-const AddDeck = () => {
+const AddDeck = ({navigation}) => {
 	return(
-		<Text>Add Deck</Text>
+		<Container>
+			<Header>
+				<Title>Add Deck</Title>
+			</Header>
+			<Content>
+				<Body>
+					<CardForm navigation={navigation} />
+				</Body>
+			</Content>
+		</Container>
 	)
 };
 

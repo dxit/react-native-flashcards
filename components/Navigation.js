@@ -6,7 +6,10 @@ import { stormcloud, white } from '../utils/colors';
 import MainList from './MainList';
 import Quiz from './Quiz';
 import AddDeck from './AddDeck';
+import AddCard from './AddCard';
 import Deck from './Deck';
+
+
 
 const Tabs = createBottomTabNavigator({
 	Decks: {
