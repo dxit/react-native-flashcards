@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Header, Spinner } from 'native-base';
 import { Font, } from 'expo';
 import StatusBarHeader from './components/StatusBarHeader';
-import { stormcloud } from './utils/colors';
+import { stormcloud, columbiaBlue } from './utils/colors';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -26,7 +26,8 @@ export default class App extends React.Component {
 
 		await Font.loadAsync({
 			Roboto: require('native-base/Fonts/Roboto.ttf'),
-			Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
+			Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+			Ionicons: require('native-base/Fonts/Ionicons.ttf')
 		});
 
 		this.setState({fontLoaded: true});
@@ -45,7 +46,7 @@ export default class App extends React.Component {
 		return (
 			<Provider store={store}>
 				<View style={{flex: 1}}>
-					<StatusBarHeader/>
+					<StatusBarHeader backgroundColor={columbiaBlue} barStyle='light-content' />
 					<Navigation/>
 				</View>
 			</Provider>

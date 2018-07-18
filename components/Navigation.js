@@ -2,14 +2,15 @@ import React from 'react';
 import { Platform, Text } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Ionicons, EvilIcons } from '@expo/vector-icons';
-import { columbiaBlue, stormcloud, white } from '../utils/colors';
-import ListDecks from './ListDecks';
+import { stormcloud, white } from '../utils/colors';
+import MainList from './MainList';
 import Quiz from './Quiz';
 import AddDeck from './AddDeck';
+import Deck from './Deck';
 
 const Tabs = createBottomTabNavigator({
 	Decks: {
-		screen: ListDecks,
+		screen: MainList,
 		navigationOptions: {
 			tabBarLabel: 'Decks',
 			tabBarIcon: () =>
@@ -55,7 +56,25 @@ const Navigation = createStackNavigator({
 		navigationOptions: {
 			header: null
 		}
-	}
+	},
+	Deck: {
+		screen: Deck,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle: {
+				backgroundColor: stormcloud,
+			}
+		}
+	},
+	AddCard: {
+		screen: AddCard,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle: {
+				backgroundColor: stormcloud,
+			}
+		}
+	},
 });
 
 export default Navigation;
