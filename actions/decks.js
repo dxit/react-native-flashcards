@@ -26,7 +26,7 @@ export function addCard(deckTitle, card) {
 	}
 }
 
-function onAddDeckSuccess (deck) {
+function onAddDeckSuccess(deck) {
 	return {
 		type: ADD_DECK,
 		deck

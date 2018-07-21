@@ -9,23 +9,13 @@ import AddDeck from './AddDeck';
 import AddCard from './AddCard';
 import Deck from './Deck';
 
-
-
 const Tabs = createBottomTabNavigator({
 	Decks: {
 		screen: MainList,
 		navigationOptions: {
 			tabBarLabel: 'Decks',
 			tabBarIcon: () =>
-				<Ionicons name='ios-list' size={30} color={stormcloud} />
-		}
-	},
-	Quiz: {
-		screen: Quiz,
-		navigationOptions: {
-			tabBarLabel: 'Quiz',
-			tabBarIcon: () =>
-				<EvilIcons name='trophy' size={30} color={stormcloud} />
+				<Ionicons name='ios-list' size={30} color={stormcloud}/>
 		}
 	},
 	AddDeck: {
@@ -33,7 +23,7 @@ const Tabs = createBottomTabNavigator({
 		navigationOptions: {
 			tabBarLabel: 'Add Deck',
 			tabBarIcon: () =>
-				<Ionicons name='ios-add' size={30} color={stormcloud} />
+				<Ionicons name='ios-add' size={30} color={stormcloud}/>
 		}
 	}
 }, {
@@ -62,6 +52,15 @@ const Navigation = createStackNavigator({
 	},
 	Deck: {
 		screen: Deck,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle: {
+				backgroundColor: stormcloud,
+			}
+		}
+	},
+	Quiz: {
+		screen: Quiz,
 		navigationOptions: {
 			headerTintColor: white,
 			headerStyle: {

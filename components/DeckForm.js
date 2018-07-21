@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { Button, Text, Form, Item, Input, Label } from 'native-base';
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ class DeckForm extends Component {
 				<Form>
 					<Item floatingLabel>
 						<Label>Deck Title</Label>
-						<Input onChangeText={title => this.setState({title})} />
+						<Input onChangeText={title => this.setState({title})}/>
 					</Item>
 					<Button
 						style={styles.btn}

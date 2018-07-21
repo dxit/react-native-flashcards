@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
 import decks from './decks';
+import quiz from './quiz';
 
-export default combineReducers({decks});
+export default combineReducers({decks, quiz});

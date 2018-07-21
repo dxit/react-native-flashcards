@@ -1,5 +1,4 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
 import { Container, Header, Title, Content, List } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -14,7 +13,7 @@ const MainList = (props) => {
 			<Content>
 				<List>
 					{props.decks.map(deck =>
-						<DeckListItem key={deck.title} navigation={props.navigation} deck={deck} />
+						<DeckListItem key={deck.title} navigation={props.navigation} deck={deck}/>
 					)}
 				</List>
 			</Content>
@@ -23,7 +22,7 @@ const MainList = (props) => {
 };
 
 const mapStateToProps = ({decks}) => {
-	const convertDecksToArray = decks => decks ? Object.values(decks).map( deck => deck ) : [];
+	const convertDecksToArray = decks => decks ? Object.values(decks).map(deck => deck) : [];
 
 	return {
 		decks: convertDecksToArray(decks)

@@ -39,14 +39,14 @@ class CardForm extends Component {
 				<Form>
 					<Item floatingLabel>
 						<Label>Question</Label>
-						<Input onChangeText={question => this.setState({question})} />
+						<Input onChangeText={question => this.setState({question})}/>
 					</Item>
 					<Item floatingLabel>
 						<Label>Answer</Label>
-						<Input onChangeText={answer => this.setState({answer})} />
+						<Input onChangeText={answer => this.setState({answer})}/>
 					</Item>
 					<Text style={styles.label}>Is it correct?</Text>
-					<Radio onRadioEvent={this.onRadioEvent} />
+					<Radio onRadioEvent={this.onRadioEvent}/>
 					<Button
 						style={styles.btn}
 						onPress={this.submit}>
