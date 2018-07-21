@@ -10,9 +10,7 @@ const AddCard = ({navigation}) => {
 				<Title>Add Card</Title>
 			</Header>
 			<Content>
-				<Body>
-					<CardForm navigation={navigation}/>
-				</Body>
+				<CardForm navigation={navigation}/>
 			</Content>
 		</Container>
 	)

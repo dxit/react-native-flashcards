@@ -1,6 +1,7 @@
 import React  from 'react';
-import { Container, Header, Content, Body, Title } from 'native-base'
+import { Container, Header, Content, Title } from 'native-base'
 import { withNavigation } from 'react-navigation';
+import DeckForm from './DeckForm';
 
 const AddDeck = ({navigation}) => {
 	return(
@@ -9,12 +10,10 @@ const AddDeck = ({navigation}) => {
 				<Title>Add Deck</Title>
 			</Header>
 			<Content>
-				<Body>
-					<CardForm navigation={navigation} />
-				</Body>
+				<DeckForm navigation={navigation} />
 			</Content>
 		</Container>
 	)
 };
 
-export default AddDeck;
+export default withNavigation(AddDeck);

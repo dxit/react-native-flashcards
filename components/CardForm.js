@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, TextInput } from 'react-native';
-import { Button, Text } from 'native-base';
-import { reduxForm, Field, reset } from 'redux-form';
+import { StyleSheet, ScrollView } from 'react-native';
+import { Button, Text, Item, Form, Input, Label } from 'native-base';
 import { connect } from 'react-redux';
 import Radio from './Radio';
-import Input from './Input';
 import { addCard } from '../actions/decks';
 import { weldonBlue } from '../utils/colors';
 
 class CardForm extends Component {
 	state = {
+		question: '',
+		answer: '',
 		radioValue: true
 	};
 
-	submit = value => {
+	submit = () => {
 		const {dispatch, navigation} = this.props;
+		const {question, answer} = this.state;
+
 		dispatch(addCard(navigation.state.params.deckTitle, {
-				...value,
+				question,
+				answer,
 				correct: this.state.radioValue
 			})
 		);
-		navigation.goBack()
+
+		navigation.goBack();
 	};
 
 	onRadioEvent = event => {
@@ -30,25 +34,25 @@ class CardForm extends Component {
 	};
 
 	render() {
-		const {handleSubmit} = this.props;
 		return (
 			<ScrollView style={styles.container}>
-				<Text style={styles.label}>Question</Text>
-				<Field name="question" component={Input}/>
-				<Text style={styles.label}>Answer</Text>
-				<Field name="answer" component={Input}/>
-				<Text style={styles.label}>Is it correct?</Text>
-				<Field
-					name="correct"
-					type="radio"
-					onRadioEvent={this.onRadioEvent}
-					component={Radio}
-				/>
-				<Button
-					style={styles.btn}
-					onPress={handleSubmit(this.submit)}>
-					<Text>Submit</Text>
-				</Button>
+				<Form>
+					<Item floatingLabel>
+						<Label>Question</Label>
+						<Input onChangeText={question => this.setState({question})} />
+					</Item>
+					<Item floatingLabel>
+						<Label>Answer</Label>
+						<Input onChangeText={answer => this.setState({answer})} />
+					</Item>
+					<Text style={styles.label}>Is it correct?</Text>
+					<Radio onRadioEvent={this.onRadioEvent} />
+					<Button
+						style={styles.btn}
+						onPress={this.submit}>
+						<Text>Submit</Text>
+					</Button>
+				</Form>
 			</ScrollView>
 		)
 	}
@@ -61,7 +65,8 @@ const styles = StyleSheet.create({
 	label: {
 		marginTop: 30,
 		marginBottom: 5,
-		fontSize: 16
+		fontSize: 16,
+		textAlign: 'center'
 	},
 	btn: {
 		marginTop: 50,
@@ -70,13 +75,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-CardForm = connect()(CardForm);
-
-export default reduxForm({
-	form: 'add-card',
-	onSubmitSuccess: (result, dispatch) => {
-		dispatch(reset('add-card'));
-		dispatch(reset('add-card'));
-		dispatch(reset('add-card'));
-	}
-})(CardForm);
+export default connect()(CardForm);

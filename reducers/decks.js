@@ -1,4 +1,4 @@
-import { SET_INITIAL_DATA, ADD_CARD } from '../actions/types';
+import { SET_INITIAL_DATA, ADD_CARD, ADD_DECK } from '../actions/types';
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -18,6 +18,11 @@ export default (state = {}, action) => {
 						card
 					]
 				}
+			};
+		case ADD_DECK:
+			return {
+				...state,
+				[action.deck.title]: action.deck
 			};
 		default:
 			return state

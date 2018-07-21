@@ -36,3 +36,23 @@ export const createCard = async (deckTitle, card) => {
 		...theCard[0]
 	}
 };
+
+export const createDeck = async (title) => {
+	const oldDB = await AsyncStorage.getItem(STORAGE_KEY);
+	const parsedOldDB = JSON.parse(oldDB);
+
+	const newDeck = {
+		...parsedOldDB,
+		[title]: {
+			title: title,
+			createdAt: Date.now(),
+			questions: []
+		}
+	};
+
+	AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(newDeck));
+
+	const createdDeck = await AsyncStorage.getItem(STORAGE_KEY);
+	const parsedCreatedDeck = JSON.parse(createdDeck);
+	return parsedCreatedDeck[title];
+};
