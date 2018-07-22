@@ -1,6 +1,15 @@
-# react-native-flashcards
-Udacity React Nanodegree project: Mobile Flashcards built with React Native.
+# React Native Project: Mobile Flashcards
+## Description
 
+This is the third project for the [React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).
+
+It is a mobile application that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+
+The app is built with React Native and was developed and tested for **iOS only**.
+
+* [MyReads](https://github.com/dxit/reactnd-project-myreads-starter) — React Fundamentals Project
+* [Would You Rather](https://github.com/dxit/react-redux-would-you-rather) — React & Redux Project
+* [Flashcards](https://github.com/dxit/react-native-flashcards) - React Native Project
 
 ## Create React Native App
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
