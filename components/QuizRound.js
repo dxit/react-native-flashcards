@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, View, Header, Body, Content, Text, Button } from 'native-base';
 import { StyleSheet } from 'react-native';
-import { addPoint } from '../actions/quiz';
+import {addPoint, resetScore} from '../actions/quiz';
 import FlippableCard from './FlippableCard';
 import { stormcloud, sunsetOrange, white } from '../utils/colors';
 import { clearLocalNotification, setStudyReminderNotification } from '../utils/notifications';
@@ -33,10 +33,15 @@ class QuizRound extends Component {
 		}
 	};
 
+	quizReset = () => {
+		this.props.boundResetScore();
+		this.setState({showScoreScreen: false, step: 1});
+	};
+
 	render() {
 		const {step, maxStep, showScoreScreen} = this.state;
 		const {score} = this.props;
-		const {question, answer, correct} = this.props.deck.questions[step - 1];
+		const {question, answer} = this.props.deck.questions[step - 1];
 
 		const getScore = score => Math.round(score / maxStep * 100);
 
@@ -59,9 +64,15 @@ class QuizRound extends Component {
 						</Body>
 						<Button
 							style={styles.backBtn}
-							onPress={() => this.props.navigate('Decks')}
+							onPress={() => this.props.navigate('Deck', {deck: this.props.deck})}
 						>
-							<Text style={styles.backBtnTxt}>Go Home </Text>
+							<Text style={styles.backBtnTxt}>Go Back to Deck</Text>
+						</Button>
+						<Button
+							style={styles.resetBtn}
+							onPress={() => this.quizReset()}
+						>
+							<Text style={styles.backBtnTxt}>Reset Quiz</Text>
 						</Button>
 					</Content>
 				</Container>
@@ -85,13 +96,13 @@ class QuizRound extends Component {
 				<View style={styles.buttonContainer}>
 					<Button
 						style={styles.incorrectBtn}
-						onPress={() => this.nextQuestion(correct === false)}
+						onPress={() => this.nextQuestion(false)}
 					>
 						<Text style={styles.incorrectBtnTxt}>Incorrect</Text>
 					</Button>
 					<Button
 						style={styles.correctBtn}
-						onPress={() => this.nextQuestion(correct === true)}
+						onPress={() => this.nextQuestion(true)}
 					>
 						<Text>Correct</Text>
 					</Button>
@@ -120,6 +131,11 @@ const styles = StyleSheet.create({
 	backBtn: {
 		marginTop: 100,
 		backgroundColor: stormcloud,
+		alignSelf: 'center'
+	},
+	resetBtn: {
+		marginTop: 10,
+		backgroundColor: sunsetOrange,
 		alignSelf: 'center'
 	},
 	backBtnTxt: {
@@ -155,7 +171,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	boundAddPoint: () => dispatch(addPoint())
+	boundAddPoint: () => dispatch(addPoint()),
+	boundResetScore: () => dispatch(resetScore())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizRound);

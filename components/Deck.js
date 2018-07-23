@@ -35,17 +35,19 @@ class Deck extends Component {
 							<Icon name='ios-add-outline' style={{color: stormcloud}}/>
 							<Text style={{color: stormcloud}}>Add Card</Text>
 						</Button>
-						<Button
-							iconLeft
-							style={[styles.btnSolid, {marginTop: 10}]}
-							primary
-							onPress={() => navigation.navigate(
-								'Quiz',
-								{deck}
-							)}>
-							<Icon name='ios-qr-scanner'/>
-							<Text>Start Quiz</Text>
-						</Button>
+						{deck.questions.length && (
+							<Button
+								iconLeft
+								style={[styles.btnSolid, {marginTop: 10}]}
+								primary
+								onPress={() => navigation.navigate(
+									'Quiz',
+									{deck}
+								)}>
+								<Icon name='ios-qr-scanner'/>
+								<Text>Start Quiz</Text>
+							</Button>
+						)}
 					</View>
 				</Container>
 			)

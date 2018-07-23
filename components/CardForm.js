@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { Button, Text, Item, Form, Input, Label } from 'native-base';
 import { connect } from 'react-redux';
-import Radio from './Radio';
 import { addCard } from '../actions/decks';
 import { weldonBlue } from '../utils/colors';
 
@@ -20,7 +19,7 @@ class CardForm extends Component {
 		dispatch(addCard(navigation.state.params.deckTitle, {
 				question,
 				answer,
-				correct: this.state.radioValue
+				correct: null
 			})
 		);
 
@@ -45,8 +44,6 @@ class CardForm extends Component {
 						<Label>Answer</Label>
 						<Input onChangeText={answer => this.setState({answer})}/>
 					</Item>
-					<Text style={styles.label}>Is it correct?</Text>
-					<Radio onRadioEvent={this.onRadioEvent}/>
 					<Button
 						style={styles.btn}
 						onPress={this.submit}>

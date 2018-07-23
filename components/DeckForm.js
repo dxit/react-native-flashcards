@@ -15,7 +15,7 @@ class DeckForm extends Component {
 		const {title} = this.state;
 
 		dispatch(addDeck(title));
-		navigation.goBack();
+		navigation.navigate('Deck', {deck: {title}});
 	};
 
 	render() {
